@@ -1,10 +1,12 @@
 import './App.css';
+import { GlobalProvider } from './context/GlobalState';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Hello World</h1>
-    </div>
+    <GlobalProvider>
+      <div className="App">
+      </div>
+    </GlobalProvider>
   );
 }
 
