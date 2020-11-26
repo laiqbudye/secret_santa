@@ -11,7 +11,7 @@ app.use(express.json({ extended: false }));    //this is inbuilt middlewre which
 
 
 //Define Routes  // app.use is a middleware
-// app.use('/api/users', require('./routes/api/users'));
+app.use('/api/employee', require('./routes/api/employee'));
 
 // serve static assets in production 
 
