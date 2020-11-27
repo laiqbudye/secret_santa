@@ -1,0 +1,35 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+  }
+body{
+    background-image:url(../celebrate.jpg); 
+    background-repeat: no-repeat; 
+    background-size: cover;
+  }
+
+h1{
+    position: absolute;
+    color:white;
+    top:10%;
+    right: 10%;
+}
+
+.details{
+    position: absolute;
+    top: 35%;
+    right: 40%; 
+    margin-bottom: auto;
+}
+
+.details label{
+    color : white;
+    font-size: xx-large;
+}
+
+.details button{
+    position: absolute;
+    right: 50%; 
+}
