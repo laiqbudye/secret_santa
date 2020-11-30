@@ -42,6 +42,16 @@ export default (state, action) => {
             return {
                 ...state
             }
+        case 'FETCH_ALL_EMPLOYEES_SUCCESSFUL':
+            return {
+                ...state,
+                employees: action.payload
+            }
+        case 'FETCH_ALL_EMPLOYEES_SUCCESSFUL_ERROR':
+            return {
+                ...state,
+                employees: []
+            }    
         default:
             return state;
     }

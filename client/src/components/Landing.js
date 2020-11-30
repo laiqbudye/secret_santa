@@ -5,6 +5,7 @@ import DiscoverChild from './DiscoverChild';
 import { Route, Switch } from 'react-router-dom';
 import { NotFound } from './NotFound';
 import { AddEmployee } from './Admin/AddEmployee';
+import { EmployeeList } from './Admin/EmployeeList';
 
 export const Landing = (props) => {
     return (
@@ -16,6 +17,7 @@ export const Landing = (props) => {
                         <Route exact path='/' component={Register}></Route>
                         <Route exact path='/discoverchild/:empid/:token' component={DiscoverChild}></Route>
                         <Route exact path='/admin/addemployee' component={AddEmployee}></Route>
+                        <Route exact path='/admin/showemployees' component={EmployeeList}></Route>
                         <Route component={NotFound}></Route>
                     </Switch>
                 </div>

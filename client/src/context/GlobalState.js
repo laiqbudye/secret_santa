@@ -121,10 +121,30 @@ export const GlobalProvider = ({ children  }) => {
             setAlert(error.response.data.error, 'danger');
         }
     }
+
+    //fetch all available employees
+
+    async function fetchAllEmployees(){
+        try {
+            const res = await axios.get('/api/employee/admin/fetchemployees');
+            dispatch({
+                type: 'FETCH_ALL_EMPLOYEES_SUCCESSFUL',
+                payload: res.data.data
+            })
+           
+        } catch (error) {
+            dispatch({
+                type: 'FETCH_ALL_EMPLOYEES_SUCCESSFUL_ERROR',
+                payload: error.response.data.error
+            })
+        }
+    }
     return(<GlobalContext.Provider value={{
         registerEmployee,
         verifyEmployee,
         addEmployeeByAdmin,
+        fetchAllEmployees,
+        employees: state.employees,
         error: state.error,
         loading: state.loading,
         showAlert: state.showAlert,

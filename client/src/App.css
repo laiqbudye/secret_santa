@@ -325,6 +325,24 @@
     }
    
   }
+
+  .list {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 40px;
+    width: 80%;
+  }
+  
+  .list li {
+    background-color: #fff;
+    box-shadow: var(--box-shadow);
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    padding: 10px;
+    margin: 10px 0;
+  }
   
   @media (orientation: portrait) {
     .navbar i{
