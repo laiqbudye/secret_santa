@@ -29,7 +29,7 @@ export const GlobalProvider = ({ children  }) => {
     
         setTimeout(() => dispatch({
             type: 'REMOVE_ALERT'
-        }),3000);
+        }),5000);
     };
 
 
