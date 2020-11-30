@@ -1,9 +1,6 @@
 import React, { Fragment, useState, useContext } from 'react';
 import { Link, Redirect } from "react-router-dom";
-// import {setAlert} from '../../actions/alert';
 import { GlobalContext } from '../context/GlobalState';
-import PropTypes from 'prop-types';
-
 
 const Register = () => {
     const { registerEmployee } = useContext(GlobalContext)
@@ -33,7 +30,7 @@ const Register = () => {
     return (
         <Fragment>
             <h1 className="large text-primary">Secret Santa</h1>
-            <p className="lead"><i className="fas fa-user"></i> Create Your Account</p>
+            <p className="lead"><i className="fas fa-user"></i> Register to play</p>
             <form className="form" onSubmit={e => onSubmit(e)}>
                 <div className="form-group">
                     <input
@@ -70,10 +67,5 @@ const Register = () => {
         </Fragment>
     )
 };
-
-Register.propTypes = {
-    // setAlert: PropTypes.func.isRequired,
-    // register: PropTypes.func.isRequired
-}
 
 export default Register;
