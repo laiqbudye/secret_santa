@@ -19,7 +19,7 @@ export const GlobalContext = createContext(initialState);
 //now create a provider component
 export const GlobalProvider = ({ children  }) => {
     const [state, dispatch] =useReducer(AppReducer, initialState);
-
+    let timer = null;
 
     const setAlert = (msg, alertType)  => {
 
@@ -28,9 +28,9 @@ export const GlobalProvider = ({ children  }) => {
             payload: {msg, alertType}
         });
     
-        setTimeout(() => dispatch({
+        timer = setTimeout(() => dispatch({
             type: 'REMOVE_ALERT'
-        }),5000);
+        }),3000);
     };
 
 
@@ -86,10 +86,45 @@ export const GlobalProvider = ({ children  }) => {
     }
 
 
+    //Add an employee to DB - Admin can add employee entry in DB
 
+    async function addEmployeeByAdmin({name, email}){
+
+        //clearing current alert box
+        clearTimeout(timer);
+        timer = null;
+        dispatch({
+            type: 'REMOVE_ALERT'
+        })
+
+        const config = {
+            headers:{
+                'Content-type': 'application/json'
+            }
+        }
+
+        const body = JSON.stringify({name, email });
+
+        try {
+            const res = await axios.post('/api/employee/admin/addemployee',body, config)
+            dispatch({
+                type: 'EMPLOYEE_ADDED_BY_ADMIN'
+            })
+
+            setAlert(res.data.msg, 'success');
+        } catch (error) {
+           
+            dispatch({
+                type: 'EMPLOYEE_ADDED_BY_ADMIN_ERROR'
+            })
+
+            setAlert(error.response.data.error, 'danger');
+        }
+    }
     return(<GlobalContext.Provider value={{
         registerEmployee,
         verifyEmployee,
+        addEmployeeByAdmin,
         error: state.error,
         loading: state.loading,
         showAlert: state.showAlert,

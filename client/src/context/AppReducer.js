@@ -34,6 +34,14 @@ export default (state, action) => {
                 isAuthenticated: false,
                 alertInfo: action.payload
             }
+        case 'EMPLOYEE_ADDED_BY_ADMIN':
+            return {
+                ...state
+            }
+        case 'EMPLOYEE_ADDED_BY_ADMIN_ERROR':
+            return {
+                ...state
+            }
         default:
             return state;
     }
