@@ -9,8 +9,7 @@ function App() {
       <Router>
 
         <Switch>
-          <Route exact path='/' component={Landing}></Route>
-          <Route exact path='/:empId/:token' component={Landing}></Route>
+          <Route path='/' component={Landing}></Route>
         </Switch>
 
       </Router>
