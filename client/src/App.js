@@ -1,16 +1,19 @@
 import './App.css';
-import Register from './components/Register';
-import Alert from './components/Alert';
 import { GlobalProvider } from './context/GlobalState';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Landing } from './components/Landing';
 
 function App() {
   return (
     <GlobalProvider>
-      <div className="App">
-        <Alert />
-        <Register />
-      </div>
+      <Router>
+
+        <Switch>
+          <Route exact path='/' component={Landing}></Route>
+          <Route exact path='/:empId/:token' component={Landing}></Route>
+        </Switch>
+
+      </Router>
     </GlobalProvider>
   );
 }
