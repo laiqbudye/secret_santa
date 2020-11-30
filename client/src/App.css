@@ -195,6 +195,8 @@
   
   .btn:hover {
     opacity: 0.8;
+    transform: scale(1.1);
+    transition: all .2s;
   }
   
   .bg-light,

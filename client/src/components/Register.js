@@ -55,7 +55,7 @@ const Register = () => {
                 <div className="form-group">
                     <input
                         type="text"
-                        placeholder="Address"
+                        placeholder=" Postal Address"
                         name="address"
                         value={address}
                         onChange={e => onChange(e)}
