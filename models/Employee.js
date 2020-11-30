@@ -13,6 +13,15 @@ const EmployeeSchema = new mongoose.Schema({
     address:{
         type: String
     },
+    userToken:{
+        type: String
+    },
+    userTokenExpiresAt:{
+        type: Number
+    },
+    isTokenUsed:{
+        type: Boolean  
+    },
     date:{
         type: Date,
         default: Date.now
