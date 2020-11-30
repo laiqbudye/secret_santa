@@ -329,8 +329,9 @@
   .list {
     list-style-type: none;
     padding: 0;
-    margin-bottom: 40px;
     width: 80%;
+    height: 90%;
+    overflow: scroll;
   }
   
   .list li {
@@ -344,6 +345,9 @@
     margin: 10px 0;
   }
   
+  ::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
   @media (orientation: portrait) {
     .navbar i{
       display: none;
