@@ -1,5 +1,5 @@
 import React, { useState, useContext, Fragment } from 'react';
-import { GlobalContext } from '../context/GlobalState';
+import { GlobalContext } from '../../context/GlobalState';
 
 export const AddEmployee = () => {
     const { addEmployeeByAdmin } = useContext(GlobalContext)

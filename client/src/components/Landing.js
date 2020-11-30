@@ -4,7 +4,7 @@ import Alert from './Alert';
 import DiscoverChild from './DiscoverChild';
 import { Route, Switch } from 'react-router-dom';
 import { NotFound } from './NotFound';
-import { AddEmployee } from './AddEmployee';
+import { AddEmployee } from './Admin/AddEmployee';
 
 export const Landing = (props) => {
     return (
