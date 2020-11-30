@@ -22,6 +22,11 @@ const Register = () => {
     const onSubmit = e => {
         e.preventDefault();
         registerEmployee({ name, email, address }); // sending as object
+        setFormData({
+            name: '',
+            email: '',
+            address: ''
+        })
     };
 
 
