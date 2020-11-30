@@ -8,7 +8,9 @@ const initialState = {
     error: null,
     loading: true,
     showAlert: false,
-    alertInfo: null
+    alertInfo: null,
+    isAuthenticated: false,
+    empData: null
 }
 
 //now create a context
@@ -21,7 +23,6 @@ export const GlobalProvider = ({ children  }) => {
 
     const setAlert = (msg, alertType)  => {
 
-        console.log("inside setalert")
         dispatch({
             type: 'SET_ALERT',
             payload: {msg, alertType}
@@ -63,14 +64,38 @@ export const GlobalProvider = ({ children  }) => {
         }
     }
 
+    // verify employee on basis of emp id and token
+
+    async function verifyEmployee(empid, token){
+
+        try {
+            const res = await axios.get(`/api/employee/discoverchild/${empid}/${token}`);
+
+            dispatch({
+                type: 'EMPLOYEE_FOUND',
+                payload: res.data
+            });
+
+        } catch (error) {
+            dispatch({
+                type: 'EMPLOYEE_NOT_FOUND'
+            });
+            
+            // setAlert(error.response.data.error, 'danger');
+        }
+    }
+
 
 
     return(<GlobalContext.Provider value={{
         registerEmployee,
+        verifyEmployee,
         error: state.error,
         loading: state.loading,
         showAlert: state.showAlert,
-        alertInfo: state.alertInfo
+        alertInfo: state.alertInfo,
+        isAuthenticated: state.isAuthenticated,
+        empData: state.empData
     }}>
         {children}
     </GlobalContext.Provider>)

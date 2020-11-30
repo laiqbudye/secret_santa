@@ -43,7 +43,7 @@ router.post('/', [
         // creating token to verify user when he click link from mail
         const userToken = crypto.randomBytes(16).toString('hex');  // reste token
         const userTokenExpiresAt = Date.now() + 1800000;  // valid for half hour
-        const redirectLink = `http://localhost:3000/${savedUser._id}/${userToken}`;  //this link will go on mail 
+        const redirectLink = `http://localhost:3000/discoverchild/${savedUser._id}/${userToken}`;  //this link will go on mail 
 
         user.userToken = userToken;
         user.userTokenExpiresAt = userTokenExpiresAt;
@@ -109,5 +109,30 @@ router.post('/', [
         }
 
     });
+
+    router.get('/discoverchild/:empid/:token', async(req,res) => {
+        
+        try {
+            const employeeDetails = await Employee.findById(req.params.empid);
+
+            if(!employeeDetails){
+                res.status(404).json({error: "Employee not found!!!"});
+            }
+
+
+            if (req.params.token === employeeDetails.userToken && !employeeDetails.isTokenUsed) { // checking if user already used that link once
+                return res.status(200).json(employeeDetails);
+            } else {
+                return res.status(400).json({ error: 'Invalid Token or You have already played the game' });
+            }
+
+        } catch (error) {
+            console.log(error.kind);
+            if(error.kind === 'ObjectId') {     // if we pass an invalid post id
+                res.status(404).json({error: "Employee not found!!!"});
+            }
+            res.status(500).send('sever error');
+        }
+    })
 
     module.exports = router;

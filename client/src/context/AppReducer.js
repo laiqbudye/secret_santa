@@ -21,6 +21,18 @@ export default (state, action) => {
                 showAlert: false,
                 alertInfo: null
             }
+        case 'EMPLOYEE_FOUND':
+            return {
+                ...state,
+                empData: action.payload,
+                isAuthenticated: true
+            }
+        case 'EMPLOYEE_NOT_FOUND':
+            return {
+                ...state,
+                empData: null,
+                isAuthenticated: false
+            }
         default:
             return state;
     }
