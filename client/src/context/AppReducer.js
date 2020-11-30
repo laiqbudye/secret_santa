@@ -31,7 +31,8 @@ export default (state, action) => {
             return {
                 ...state,
                 empData: null,
-                isAuthenticated: false
+                isAuthenticated: false,
+                alertInfo: action.payload
             }
         default:
             return state;

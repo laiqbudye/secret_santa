@@ -3,7 +3,7 @@ import { GlobalContext } from '../context/GlobalState';
 
 const DiscoverChild = (props) => {
 
-    const { verifyEmployee, isAuthenticated, empData } = useContext(GlobalContext)
+    const { verifyEmployee, isAuthenticated, empData, alertInfo } = useContext(GlobalContext)
     
     useEffect(()=> {
         verifyEmployee(props.match.params.empid, props.match.params.token)
@@ -11,7 +11,7 @@ const DiscoverChild = (props) => {
 
     return (
         <div>
-            {isAuthenticated ? <h1>Hello {empData.name}</h1> : <h1>It seems you are not registered with us!!!</h1>}
+            {isAuthenticated ? <h1>Hello {empData.name}</h1> : <h1>{alertInfo}</h1>}
         </div>
     )
 }

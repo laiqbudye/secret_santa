@@ -52,7 +52,7 @@ export const GlobalProvider = ({ children  }) => {
                 payload: res.data.data
             })
 
-            setAlert('Please chek your mail', 'success');
+            setAlert(res.data.msg, 'success');
         } catch (error) {
            
             dispatch({
@@ -78,10 +78,10 @@ export const GlobalProvider = ({ children  }) => {
 
         } catch (error) {
             dispatch({
-                type: 'EMPLOYEE_NOT_FOUND'
+                type: 'EMPLOYEE_NOT_FOUND',
+                payload: error.response.data.error
             });
             
-            // setAlert(error.response.data.error, 'danger');
         }
     }
 
