@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { check, validationResult } = require('express-validator');
 const Employee = require('../../models/Employee');
+const EmpList = require('../../models/EmpList');
 const config = require('config');
 var nodemailer = require('nodemailer');
 const crypto = require('crypto'); 
@@ -70,7 +71,6 @@ router.post('/', [
 
             <p><i><font color="blue"> ${redirectLink} </font></i></p>
 
-            <p> This link is only valid for next 30 minutes. </p>
             
             <p> Thanks, </p>
             <h4> Secret Santa Team </h4>`
@@ -138,6 +138,64 @@ router.post('/', [
             }
             res.status(500).send('sever error');
         }
-    })
+    });
+
+
+    //add employee from admin panel
+
+    router.post('/admin/addemployee', [
+        check('name', 'Name is required').not().isEmpty(),     //validating our request with express-validator
+        check('email', 'enter valid email id').isEmail()
+    ],
+        async (req, res) => {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(400).json({ errors: errors.array() });
+            }
+           
+            //getting name email n password
+            const { name, email } = req.body;
+            try {
+                //see if user exist
+                
+                let user = await EmpList.findOne({ email });
+    
+                if (user) {
+                    return res.status(400).json({
+                        error: 'Employee entry already exist',
+                        success: false
+                    })
+                }
+                
+                user = new EmpList({
+                    name,
+                    email               // made instance of user with all its fields as per model's Employee.js file
+                });
+            
+                    
+              await user.save();
+    
+              return res.status(201).json({
+                msg: 'Employee added successully in DB',
+                success: true
+            })
+    
+            } catch (error) {
+                if(error.name === "ValidationError"){
+                    const messages = Object.values(error.errors).map(val => val.message);
+        
+                    return res.status(400).json({
+                        error: messages,
+                        success: false
+                    })
+                }else{
+                    return res.status(500).json({
+                        error: 'Server Error',
+                        success: false
+                    })
+                }
+            }
+    
+        });
 
     module.exports = router;
