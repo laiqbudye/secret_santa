@@ -2,6 +2,7 @@ import React from 'react';
 import Register from './Register';
 import Alert from './Alert';
 import DiscoverChild from './DiscoverChild';
+import { NotFound } from './NotFound';
 
 export const Landing = (props) => {
     console.log(props.location)
