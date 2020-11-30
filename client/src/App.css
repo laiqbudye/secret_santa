@@ -1,6 +1,6 @@
 /* Global Styles */
 :root {
-    --primary-color: #ff0000;/*#17a2b8;*/
+    --primary-color: #ffffff;/*#17a2b8;*/
     --dark-color: #343a40;
     --light-color: #f4f4f4;
     --danger-color: #dc3545;
@@ -138,6 +138,9 @@
     opacity: 0.9;
     background: var(--light-color);
     color: #333;
+    position: absolute;
+    bottom: 10%;
+    border-radius: 10px;
   }
   
   .btn-primary,
@@ -145,7 +148,8 @@
   .badge-primary,
   .alert-primary {
     background: var(--primary-color);
-    color: #fff;
+    color: red;
+    border-radius: 10px;
   }
   
   .btn-light,
@@ -201,7 +205,7 @@
   
   /* Overlay */
   .dark-overlay {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.4);
     position: absolute;
     top: 0;
     left: 0;
@@ -210,6 +214,9 @@
   }
   
   /* Forms */
+  .form {
+    width: 60%;
+  }
   .form .form-group {
     margin: 1.2rem 0;
   }
@@ -275,6 +282,7 @@
   .landing {
     position: relative;
     height: 100vh;
+    background: url('./img/celebrate.jpg') no-repeat center center/cover;
   }
   
   .landing-inner {
