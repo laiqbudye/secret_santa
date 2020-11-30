@@ -89,6 +89,7 @@ router.post('/', [
 
           return res.status(201).json({
             data: user,
+            msg: 'Please chek your E-Mail',
             success: true
         })
 
@@ -116,20 +117,24 @@ router.post('/', [
             const employeeDetails = await Employee.findById(req.params.empid);
 
             if(!employeeDetails){
-                res.status(404).json({error: "Employee not found!!!"});
+                res.status(404).json({error: "It looks like you are not registered with us"});
             }
 
 
-            if (req.params.token === employeeDetails.userToken && !employeeDetails.isTokenUsed) { // checking if user already used that link once
-                return res.status(200).json(employeeDetails);
+            if (req.params.token === employeeDetails.userToken) { // checking if user already used that link once
+                if(!employeeDetails.isTokenUsed){
+                    return res.status(200).json(employeeDetails);
+                }else{
+                    return res.status(400).json({ error: 'You have already played the game' });
+                }
             } else {
-                return res.status(400).json({ error: 'Invalid Token or You have already played the game' });
+                return res.status(400).json({ error: 'Invalid Token' });
             }
 
         } catch (error) {
             console.log(error.kind);
             if(error.kind === 'ObjectId') {     // if we pass an invalid post id
-                res.status(404).json({error: "Employee not found!!!"});
+                res.status(404).json({error: "It looks like you are not registered with us"});
             }
             res.status(500).send('sever error');
         }
