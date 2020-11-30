@@ -198,4 +198,23 @@ router.post('/', [
     
         });
 
+
+        //fetching all available employees to show to Admin
+
+        router.get('/admin/fetchemployees', async(req, res) => {
+            try {
+                const employees = await EmpList.find();
+                return res.status(200).json({
+                    data: employees,
+                    count: employees.length,
+                    success: true
+                })
+            } catch (error) {
+                return res.status(500).json({
+                    error: 'Server Error',
+                    success: false
+                })
+            }
+        });
+
     module.exports = router;
